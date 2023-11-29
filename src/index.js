@@ -15,3 +15,8 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+
+// first create a simple folder and do everythign cra
+// then create enw repo and use other last command lines
