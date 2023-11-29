@@ -1,13 +1,16 @@
-import "./App.css";
+import Body from "./components/Body";
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline text-amber-400">
-        Namastey React Netflix GPT
-      </h1>
+      <Body />
     </>
   );
 }
 
 export default App;
+
+// like App.js we used to run from index.js toh indeex.html mein
+// <head>
+// <title>
+// <body> == so we ll create here Body comp (run here)
