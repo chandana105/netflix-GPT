@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import {
+  // checkEmailAndPassword,
+  checkEmail,
+  checkPassword,
+} from "../utils/validation";
 
 const Login = () => {
   const toggleSignInForm = () => {
@@ -7,6 +12,51 @@ const Login = () => {
   };
 
   const [isSignInForm, setIsSignInForm] = useState(true); //at start its sign in form
+
+  // const [showValidaityMsg, setshowValidaityMsg] = useState();
+
+  const [showEmailValidityMessage, setShowEmailValidityMessage] = useState();
+  const [showPasswordValidityMessage, setShowPasswordValidityMessage] =
+    useState();
+
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  const handleButtonClick = () => {
+    // Validate the form
+    // useRef hook
+    // button ke clik pr need to know the refrenced inputs value
+
+    // console.log(emailRef);
+    // console.log(passwordRef);
+
+    console.log(emailRef.current.value);
+    console.log(passwordRef.current.value);
+
+    // const validityMessage = checkEmailAndPassword(
+    //   emailRef.current.value,
+    //   passwordRef.current.value
+    // );
+
+    // setshowValidaityMsg(validityMessage);
+
+    const emailValidityMessage = checkEmail(emailRef.current.value);
+    const passwordValidityMessage = checkPassword(passwordRef.current.value);
+
+    setShowEmailValidityMessage(emailValidityMessage);
+    setShowPasswordValidityMessage(passwordValidityMessage);
+  };
+
+  const checkEmailValidityOnBlur = () => {
+    const emailValidityMessage = checkEmail(emailRef.current.value);
+    setShowEmailValidityMessage(emailValidityMessage);
+  };
+
+  const checkPasswordValidityOnBlur = () => {
+    const passwordValidityMessage = checkPassword(passwordRef.current.value);
+    setShowPasswordValidityMessage(passwordValidityMessage);
+  };
+
   return (
     <div className="relative">
       <Header />
@@ -16,7 +66,11 @@ const Login = () => {
           alt="bg-img-login "
         />
       </div>
-      <form className="text-white absolute right-0 left-0 w-4/12 bg-black bg-opacity-90  my-20 mx-auto rounded-md py-12 px-14">
+      <form
+        noValidate
+        onSubmit={(e) => e.preventDefault()}
+        className="text-white absolute right-0 left-0 w-4/12 bg-black bg-opacity-90  my-20 mx-auto rounded-md py-12 px-14"
+      >
         <h1 className="font-bold text-3xl py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
@@ -28,40 +82,43 @@ const Login = () => {
           />
         )}
         <input
+          ref={emailRef}
           type="email"
+          // onChange={() => {
+          //   const emailValidityMessage = checkEmail(emailRef.current.value);
+          //   setShowEmailValidityMessage(emailValidityMessage || "");
+          // }}
+          onBlur={checkEmailValidityOnBlur}
           placeholder="Email Address"
-          className="rounded-md p-4 my-4 bg-gray-800 w-full "
+          className="rounded-md p-4 mt-4 mb-2  bg-gray-800 w-full "
         />
+        <p className="text-sm mb-2  text-orange-600">
+          {showEmailValidityMessage}
+        </p>
         <input
+          ref={passwordRef}
+          onBlur={checkPasswordValidityOnBlur}
           type="password"
           placeholder="Password"
-          className="rounded-md p-4 my-4 bg-gray-800 w-full "
+          className="rounded-md p-4 mt-4 mb-2 bg-gray-800 w-full "
         />
-        <button className="rounded-md p-4 my-4 font-bold bg-red-700 w-full ">
+        <p className="text-sm mb-2  text-orange-600">
+          {showPasswordValidityMessage}
+        </p>
+        {/* {showValidaityMsg} */}
+
+        <button
+          className="rounded-md p-4 my-4 font-bold bg-red-700 w-full "
+          onClick={handleButtonClick}
+        >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
-
-        {isSignInForm ? (
-          <p className="py-4">
-            New to Netflix?{" "}
-            <span
-              className="font-bold cursor-pointer"
-              onClick={toggleSignInForm}
-            >
-              Sign up now{" "}
-            </span>
-          </p>
-        ) : (
-          <p className="py-4">
-            Already Regsitered?{" "}
-            <span
-              className="font-bold cursor-pointer"
-              onClick={toggleSignInForm}
-            >
-              Sign in{" "}
-            </span>
-          </p>
-        )}
+        <p className="py-4">
+          {isSignInForm ? "New to Netflix? " : "Already Registered? "}
+          <span className="font-bold cursor-pointer" onClick={toggleSignInForm}>
+            {isSignInForm ? "Sign up now" : "Sign In Now"}
+          </span>
+        </p>
       </form>
     </div>
   );
@@ -74,3 +131,14 @@ export default Login;
 
 // to ocnvert sign in page t osign up also. :- ie to change signin form to sign up form
 // pehle ek onclick on signup now ko click handler
+
+// if u have a big form :- so many fieds :- use formik
+
+// MOST IMPORTANTLY HERE, WE HAVE BUILD BOTH THE FORMS :- WITH JUST SINGLE FORM , JUST BY TOGGLING
+
+// if i click on sign in /sign up button :- fields value should be validated, and ie havign one button so onclcik hona chaoye
+
+// BASED ON WHETHER ITS SIGN IN OR SIGN UP WE LL DO EITHER LOGIN OR SIGN UP :- BUT BEFORE THAT VALIDATION OF FORM DATA
+// basically when should the vaisation should happen, when i clcik on sgn in button :-
+// 1. it should validate the form
+// 2. if there is error msg ,should show it
