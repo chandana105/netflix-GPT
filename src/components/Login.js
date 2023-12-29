@@ -1,60 +1,51 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import Header from "./Header";
-import {
-  // checkEmailAndPassword,
-  checkEmail,
-  checkPassword,
-} from "../utils/validation";
+import { checkEmail, checkPassword } from "../utils/validation";
 
 const Login = () => {
-  const toggleSignInForm = () => {
-    setIsSignInForm((prev) => !prev);
-  };
-
   const [isSignInForm, setIsSignInForm] = useState(true); //at start its sign in form
 
-  // const [showValidaityMsg, setshowValidaityMsg] = useState();
-
-  const [showEmailValidityMessage, setShowEmailValidityMessage] = useState();
-  const [showPasswordValidityMessage, setShowPasswordValidityMessage] =
-    useState();
+  const [inputValidity, setInputValidity] = useState({
+    email: "",
+    password: "",
+  });
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
+  const toggleSignInForm = () => {
+    setIsSignInForm((prev) => !prev);
+  };
+
+  const handleValidation = useCallback((inputType) => {
+    console.log("here");
+    switch (inputType) {
+      case "email":
+        const emailValidityMessage = checkEmail(emailRef.current.value);
+        setInputValidity((prev) => ({
+          ...prev,
+          email: emailValidityMessage,
+        }));
+        return;
+
+      case "password":
+        const passwordValidityMessage = checkPassword(
+          passwordRef.current.value
+        );
+        setInputValidity((prev) => ({
+          ...prev,
+          password: passwordValidityMessage,
+        }));
+        return;
+
+      default:
+        return;
+    }
+  }, []);
+
   const handleButtonClick = () => {
-    // Validate the form
-    // useRef hook
-    // button ke clik pr need to know the refrenced inputs value
-
-    // console.log(emailRef);
-    // console.log(passwordRef);
-
-    console.log(emailRef.current.value);
-    console.log(passwordRef.current.value);
-
-    // const validityMessage = checkEmailAndPassword(
-    //   emailRef.current.value,
-    //   passwordRef.current.value
-    // );
-
-    // setshowValidaityMsg(validityMessage);
-
-    const emailValidityMessage = checkEmail(emailRef.current.value);
-    const passwordValidityMessage = checkPassword(passwordRef.current.value);
-
-    setShowEmailValidityMessage(emailValidityMessage);
-    setShowPasswordValidityMessage(passwordValidityMessage);
-  };
-
-  const checkEmailValidityOnBlur = () => {
-    const emailValidityMessage = checkEmail(emailRef.current.value);
-    setShowEmailValidityMessage(emailValidityMessage);
-  };
-
-  const checkPasswordValidityOnBlur = () => {
-    const passwordValidityMessage = checkPassword(passwordRef.current.value);
-    setShowPasswordValidityMessage(passwordValidityMessage);
+    handleValidation("email");
+    handleValidation("password");
   };
 
   return (
@@ -84,28 +75,21 @@ const Login = () => {
         <input
           ref={emailRef}
           type="email"
-          // onChange={() => {
-          //   const emailValidityMessage = checkEmail(emailRef.current.value);
-          //   setShowEmailValidityMessage(emailValidityMessage || "");
-          // }}
-          onBlur={checkEmailValidityOnBlur}
+          onBlur={() => handleValidation("email")}
           placeholder="Email Address"
           className="rounded-md p-4 mt-4 mb-2  bg-gray-800 w-full "
         />
-        <p className="text-sm mb-2  text-orange-600">
-          {showEmailValidityMessage}
-        </p>
+        <p className="text-sm mb-2  text-orange-600">{inputValidity.email}</p>
         <input
           ref={passwordRef}
-          onBlur={checkPasswordValidityOnBlur}
+          onBlur={() => handleValidation("password")}
           type="password"
           placeholder="Password"
           className="rounded-md p-4 mt-4 mb-2 bg-gray-800 w-full "
         />
         <p className="text-sm mb-2  text-orange-600">
-          {showPasswordValidityMessage}
+          {inputValidity.password}
         </p>
-        {/* {showValidaityMsg} */}
 
         <button
           className="rounded-md p-4 my-4 font-bold bg-red-700 w-full "
@@ -142,3 +126,6 @@ export default Login;
 // basically when should the vaisation should happen, when i clcik on sgn in button :-
 // 1. it should validate the form
 // 2. if there is error msg ,should show it
+
+
+// usecallback to see
