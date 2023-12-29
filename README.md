@@ -8,6 +8,8 @@
 - Sign up form
 - Form Validations
 - useRef hook
+- (my way performace vice improved the code)
+- Firebase setup (for using backend for authentication)
 
 ## Features (Exploring the website to be build)
 

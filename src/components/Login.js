@@ -1,15 +1,17 @@
 import React, { useCallback, useRef, useState } from "react";
 import Header from "./Header";
-import { checkEmail, checkPassword } from "../utils/validation";
+import { checkEmail, checkPassword, checkFullName } from "../utils/validation";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true); //at start its sign in form
 
   const [inputValidity, setInputValidity] = useState({
+    fullName: "",
     email: "",
     password: "",
   });
 
+  const fullNameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -18,8 +20,16 @@ const Login = () => {
   };
 
   const handleValidation = useCallback((inputType) => {
-    console.log("here");
     switch (inputType) {
+      case "fullName":
+        const nameValidityMessage = checkFullName(fullNameRef.current.value);
+        setInputValidity((prev) => ({
+          ...prev,
+          fullName: nameValidityMessage,
+        }));
+        console.log("here");
+
+        return;
       case "email":
         const emailValidityMessage = checkEmail(emailRef.current.value);
         setInputValidity((prev) => ({
@@ -44,6 +54,8 @@ const Login = () => {
   }, []);
 
   const handleButtonClick = () => {
+    !isSignInForm && handleValidation("fullName");
+
     handleValidation("email");
     handleValidation("password");
   };
@@ -66,11 +78,18 @@ const Login = () => {
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
         {!isSignInForm && (
-          <input
-            type="text"
-            placeholder="Full Name"
-            className="rounded-md p-4 my-4 bg-gray-800 w-full "
-          />
+          <>
+            <input
+              ref={fullNameRef}
+              type="text"
+              onBlur={() => handleValidation("fullName")}
+              placeholder="Full Name"
+              className="rounded-md p-4 my-4 bg-gray-800 w-full "
+            />
+            <p className="text-sm mb-2  text-orange-600">
+              {inputValidity.fullName}
+            </p>
+          </>
         )}
         <input
           ref={emailRef}
@@ -127,5 +146,6 @@ export default Login;
 // 1. it should validate the form
 // 2. if there is error msg ,should show it
 
-
 // usecallback to see
+
+// now lets build the authentciatoin
