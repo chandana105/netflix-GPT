@@ -1,6 +1,9 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState, useEffect } from "react";
 import Header from "./Header";
 import { checkEmail, checkPassword, checkFullName } from "../utils/validation";
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+// const auth = getAuth();
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true); //at start its sign in form
@@ -19,6 +22,22 @@ const Login = () => {
     setIsSignInForm((prev) => !prev);
   };
 
+  const [isFormValid, setIsFormValid] = useState(true);
+
+  useEffect(() => {
+    // Here we use the updated state to perform validation
+    if (
+      inputValidity.email ||
+      inputValidity.fullName ||
+      inputValidity.password
+    ) {
+      setIsFormValid(false);
+      // Perform additional actions if the form is not valid
+    } else {
+      setIsFormValid(true);
+    }
+  }, [inputValidity]);
+
   const handleValidation = useCallback((inputType) => {
     switch (inputType) {
       case "fullName":
@@ -27,7 +46,10 @@ const Login = () => {
           ...prev,
           fullName: nameValidityMessage,
         }));
-        console.log("here");
+
+        // if (nameValidityMessage) {
+        //   // sign in
+        // }
 
         return;
       case "email":
@@ -55,9 +77,15 @@ const Login = () => {
 
   const handleButtonClick = () => {
     !isSignInForm && handleValidation("fullName");
-
     handleValidation("email");
     handleValidation("password");
+
+    if (!isFormValid) {
+      console.log("not valid");
+    } else {
+      console.log("valid");
+      // Proceed with other actions, like createUserWithEmailAndPassword
+    }
   };
 
   return (
@@ -148,4 +176,12 @@ export default Login;
 
 // usecallback to see
 
-// now lets build the authentciatoin
+// now lets build the authentciatoin - for that needed backedn - firebase
+// when enabledfirebase for app, then enable authentciation for our app also in friebase webaite
+
+// to use createUserWithEmailAndPassword api from firebase to create user with email and password on firebASE
+
+// if there is no validation msg , then createuser (signin/signup)
+
+
+// lets revive the code, coz it was simple validagtions to be doen, max range vlaidations to be doen using formik and yup 

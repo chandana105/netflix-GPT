@@ -10,6 +10,8 @@
 - useRef hook
 - (my way performace vice improved the code)
 - Firebase setup (for using backend for authentication)
+- Deploying app to production (using firebase hosting)
+- Create SignUp user Account using firebase
 
 ## Features (Exploring the website to be build)
 
