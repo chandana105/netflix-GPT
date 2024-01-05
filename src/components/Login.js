@@ -1,6 +1,9 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { checkEmail, checkPassword, checkFullName } from "../utils/validation";
+import {
+  checkEmailAndPassword,
+  checkSignUpValidations,
+} from "../utils/validation";
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 // const auth = getAuth();
@@ -8,83 +11,35 @@ import { checkEmail, checkPassword, checkFullName } from "../utils/validation";
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true); //at start its sign in form
 
-  const [inputValidity, setInputValidity] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-  });
-
   const fullNameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const toggleSignInForm = () => {
     setIsSignInForm((prev) => !prev);
   };
 
-  const [isFormValid, setIsFormValid] = useState(true);
-
-  useEffect(() => {
-    // Here we use the updated state to perform validation
-    if (
-      inputValidity.email ||
-      inputValidity.fullName ||
-      inputValidity.password
-    ) {
-      setIsFormValid(false);
-      // Perform additional actions if the form is not valid
-    } else {
-      setIsFormValid(true);
-    }
-  }, [inputValidity]);
-
-  const handleValidation = useCallback((inputType) => {
-    switch (inputType) {
-      case "fullName":
-        const nameValidityMessage = checkFullName(fullNameRef.current.value);
-        setInputValidity((prev) => ({
-          ...prev,
-          fullName: nameValidityMessage,
-        }));
-
-        // if (nameValidityMessage) {
-        //   // sign in
-        // }
-
-        return;
-      case "email":
-        const emailValidityMessage = checkEmail(emailRef.current.value);
-        setInputValidity((prev) => ({
-          ...prev,
-          email: emailValidityMessage,
-        }));
-        return;
-
-      case "password":
-        const passwordValidityMessage = checkPassword(
-          passwordRef.current.value
-        );
-        setInputValidity((prev) => ({
-          ...prev,
-          password: passwordValidityMessage,
-        }));
-        return;
-
-      default:
-        return;
-    }
-  }, []);
-
   const handleButtonClick = () => {
-    !isSignInForm && handleValidation("fullName");
-    handleValidation("email");
-    handleValidation("password");
-
-    if (!isFormValid) {
-      console.log("not valid");
+    let message = "";
+    if (isSignInForm) {
+      message = checkEmailAndPassword(
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      setErrorMessage(message);
     } else {
-      console.log("valid");
-      // Proceed with other actions, like createUserWithEmailAndPassword
+      message = checkSignUpValidations(
+        fullNameRef.current.value,
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      setErrorMessage(message);
+    }
+
+    if (message === null) {
+      console.log("all validations cleared for all methods");
     }
   };
 
@@ -110,33 +65,25 @@ const Login = () => {
             <input
               ref={fullNameRef}
               type="text"
-              onBlur={() => handleValidation("fullName")}
               placeholder="Full Name"
               className="rounded-md p-4 my-4 bg-gray-800 w-full "
             />
-            <p className="text-sm mb-2  text-orange-600">
-              {inputValidity.fullName}
-            </p>
           </>
         )}
         <input
           ref={emailRef}
           type="email"
-          onBlur={() => handleValidation("email")}
           placeholder="Email Address"
           className="rounded-md p-4 mt-4 mb-2  bg-gray-800 w-full "
         />
-        <p className="text-sm mb-2  text-orange-600">{inputValidity.email}</p>
         <input
           ref={passwordRef}
-          onBlur={() => handleValidation("password")}
           type="password"
           placeholder="Password"
           className="rounded-md p-4 mt-4 mb-2 bg-gray-800 w-full "
         />
-        <p className="text-sm mb-2  text-orange-600">
-          {inputValidity.password}
-        </p>
+
+        <p className="text-sm mb-2  text-orange-600">{errorMessage || null}</p>
 
         <button
           className="rounded-md p-4 my-4 font-bold bg-red-700 w-full "
@@ -157,31 +104,4 @@ const Login = () => {
 
 export default Login;
 
-// used the gradient propertry of tailiwnd to bottom from black color
-//  taken logo fro mnetwork of netflix in img
-
-// to ocnvert sign in page t osign up also. :- ie to change signin form to sign up form
-// pehle ek onclick on signup now ko click handler
-
-// if u have a big form :- so many fieds :- use formik
-
-// MOST IMPORTANTLY HERE, WE HAVE BUILD BOTH THE FORMS :- WITH JUST SINGLE FORM , JUST BY TOGGLING
-
-// if i click on sign in /sign up button :- fields value should be validated, and ie havign one button so onclcik hona chaoye
-
-// BASED ON WHETHER ITS SIGN IN OR SIGN UP WE LL DO EITHER LOGIN OR SIGN UP :- BUT BEFORE THAT VALIDATION OF FORM DATA
-// basically when should the vaisation should happen, when i clcik on sgn in button :-
-// 1. it should validate the form
-// 2. if there is error msg ,should show it
-
-// usecallback to see
-
-// now lets build the authentciatoin - for that needed backedn - firebase
-// when enabledfirebase for app, then enable authentciation for our app also in friebase webaite
-
-// to use createUserWithEmailAndPassword api from firebase to create user with email and password on firebASE
-
-// if there is no validation msg , then createuser (signin/signup)
-
-
-// lets revive the code, coz it was simple validagtions to be doen, max range vlaidations to be doen using formik and yup 
+// lets revive the code, coz it was simple validagtions to be doen, max range vlaidations to be doen using formik and yup
