@@ -4,9 +4,11 @@ import {
   checkEmailAndPassword,
   checkSignUpValidations,
 } from "../utils/validation";
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-
-// const auth = getAuth();
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true); //at start its sign in form
@@ -38,8 +40,44 @@ const Login = () => {
       setErrorMessage(message);
     }
 
-    if (message === null) {
-      console.log("all validations cleared for all methods");
+    if (message) return; //if there is any validation error then do not proceed further
+
+    // Sign in / Sign up
+
+    if (!isSignInForm) {
+      //sign up logic
+      createUserWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(`${errorCode} - ${errorMessage}`);
+        });
+    } else {
+      // sign in logic
+      signInWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(`${errorCode} - ${errorMessage}`);
+        });
     }
   };
 
@@ -103,5 +141,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// lets revive the code, coz it was simple validagtions to be doen, max range vlaidations to be doen using formik and yup
