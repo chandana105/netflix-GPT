@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
 import Dropdown from "./Dropdown";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const dropdownRef = useRef(null);
+  const user = useSelector((state) => state.user);
 
   const handleShowDropdown = () => {
     setIsDropdownVisible(true);
@@ -38,14 +40,16 @@ const Header = () => {
             alt="logo"
           />
         </div>
-        <div ref={dropdownRef}>
-          <img
-            src="https://occ-0-4189-3647.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229"
-            className="rounded mx-4 cursor-pointer  "
-            alt="profile"
-            onMouseEnter={handleShowDropdown}
-          />
-        </div>
+        {user && (
+          <div ref={dropdownRef}>
+            <img
+              src={user?.photoURL}
+              className="rounded mx-4 cursor-pointer w-10  "
+              alt="profile"
+              onMouseEnter={handleShowDropdown}
+            />
+          </div>
+        )}
       </div>
       {isDropdownVisible && (
         <Dropdown onMouseLeaveContainer={handleMouseLeaveContainer} />

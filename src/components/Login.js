@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import {
   checkEmailAndPassword,
@@ -7,12 +7,25 @@ import {
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { addUser } from "../utils/userSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    user && navigate("/browse");
+  }, [user, navigate]); 
+
+  // TODO: NOT TO SHOW EVEN BLINK OF HOME PAGE ALSO HERE IF GOING TO "/" PAGE
+
   const [isSignInForm, setIsSignInForm] = useState(true); //at start its sign in form
 
   const fullNameRef = useRef(null);
@@ -56,8 +69,30 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
+          console.log(user, "before uodating");
+          updateProfile(auth.currentUser, {
+            displayName: fullNameRef.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/39641650?v=4",
+          })
+            .then(() => {
+              // Profile updated!
+              // update the store of addUser with updated values
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              // add the user in store
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrorMessage(error.message);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;

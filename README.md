@@ -15,6 +15,7 @@
 - Implement Sign In User API
 - Implement Sign out User API
 - Created Redux Store with User Slice
+- Updated user profile
 
 
 ## Features (Exploring the website to be build)
