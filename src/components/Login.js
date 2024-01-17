@@ -9,8 +9,10 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [isSignInForm, setIsSignInForm] = useState(true); //at start its sign in form
 
   const fullNameRef = useRef(null);
@@ -55,6 +57,7 @@ const Login = () => {
           // Signed up
           const user = userCredential.user;
           console.log(user);
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -72,6 +75,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -141,3 +145,7 @@ const Login = () => {
 };
 
 export default Login;
+
+// now after we sign up/sign in :- we got user obj :- we might need this user obj after signin or sign up
+// acrosos the app , so as son as user sign up sogn in , we ll add this data/user ibj to my redux store
+// and then navigate th euser to browse page
