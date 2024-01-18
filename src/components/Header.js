@@ -11,21 +11,12 @@ const Header = () => {
     setIsDropdownVisible(true);
   };
 
-  // const handleHideDropdown = () => {
-  //   // setIsDropdownVisible(false);
-
-  //   setTimeout(() => {
-  //     setIsDropdownVisible(false);
-  //   }, 200);
-  // };
-
   const handleMouseLeaveContainer = (e) => {
     if (
       !e.relatedTarget ||
       !(e.relatedTarget instanceof Node) ||
       !dropdownRef.current.contains(e.relatedTarget)
     ) {
-      // console.log(e);
       setIsDropdownVisible(false);
     }
   };

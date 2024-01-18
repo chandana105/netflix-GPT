@@ -22,11 +22,11 @@ const Login = () => {
 
   useEffect(() => {
     user && navigate("/browse");
-  }, [user, navigate]); 
+  }, [user, navigate]);
 
   // TODO: NOT TO SHOW EVEN BLINK OF HOME PAGE ALSO HERE IF GOING TO "/" PAGE
 
-  const [isSignInForm, setIsSignInForm] = useState(true); //at start its sign in form
+  const [isSignInForm, setIsSignInForm] = useState(true);
 
   const fullNameRef = useRef(null);
   const emailRef = useRef(null);
@@ -78,7 +78,7 @@ const Login = () => {
               // Profile updated!
               // update the store of addUser with updated values
               const { uid, email, displayName, photoURL } = auth.currentUser;
-              // add the user in store
+              // add the updated user in store
               dispatch(
                 addUser({
                   uid: uid,
@@ -90,7 +90,6 @@ const Login = () => {
               navigate("/browse");
             })
             .catch((error) => {
-              // An error occurred
               setErrorMessage(error.message);
             });
         })
@@ -180,7 +179,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// now after we sign up/sign in :- we got user obj :- we might need this user obj after signin or sign up
-// acrosos the app , so as son as user sign up sogn in , we ll add this data/user ibj to my redux store
-// and then navigate th euser to browse page
