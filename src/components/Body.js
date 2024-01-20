@@ -23,6 +23,7 @@ const auth = getAuth();
 const Body = () => {
   const dispatch = useDispatch();
 
+  // we are checking auth everytime the page loads
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -46,7 +47,7 @@ const Body = () => {
     });
 
     return () => unsubscribe();
-  }, [dispatch]);
+  }, []);
 
   return <RouterProvider router={router} />;
 };
