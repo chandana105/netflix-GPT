@@ -36,3 +36,5 @@ export default Body;
 // we ll have ot add this useeffect to a place which i there is my whole app  but it is also in my roter provider (in a central palce whcih is always there)
 
 // here best place is Header comp :- whether its borswe page or login page :- header ll be always there
+
+// when using strings : -always use constants
