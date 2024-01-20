@@ -36,7 +36,7 @@ const Header = () => {
         navigate("/");
       }
     });
-
+    // unsubscribe when compo unmounts
     return () => unsubscribe();
   }, []);
 
@@ -90,5 +90,11 @@ export default Header;
 // and it ll heck for auth everytime
 // so whenver my auth status l change  , it ll automatically reidrects us
 
-
-// 
+// this useffect is called once when my comp loads  but my headrr can be loaded mulitple tiesin a smae single session
+// so it ll keep attachign event lisnters in my browser , it ll put my onAuth... code everytine my useffecti s ccalled
+// when my comp is there it is perfectly fien to do this
+// but when my comp unmkunts  :- i should also unsubscribe ot this action
+// bascially i mam tryign to sbscribe to this onAuthstate ... :- it is loke an event list to us
+// it keeps the uath status :- whenver the user loggs in , logs out :- it kkeos the trakc ofi t
+// so if my comp unmounts wanna unsubscribe tihs laso
+// this oinUAthstate change :- returns unsibscribe fnx

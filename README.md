@@ -18,6 +18,7 @@
 - Updated user profile
 - BugFix: Sign up user display name and profile picture update
 - BugFix: if the user is not logged in Redirect /browse to Login Page  and vice-versa
+- Unsubscribed to the onAuthStateChanged callback
 
 
 ## Features (Exploring the website to be build)
