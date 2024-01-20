@@ -1,11 +1,46 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Dropdown from "./Dropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { onAuthStateChanged } from "firebase/auth";
+import { addUser, removeUser } from "../utils/userSlice";
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const dropdownRef = useRef(null);
   const user = useSelector((state) => state.user);
+  const auth = getAuth();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // we are checking auth everytime the page loads
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in
+        const { uid, email, displayName, photoURL } = user;
+        // add the user in store
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browse");
+      } else {
+        // remove the user form store
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // TODO: NOT TO SHOW EVEN BLINK OF HOME PAGE ALSO HERE IF GOING TO "/" PAGE
 
   const handleShowDropdown = () => {
     setIsDropdownVisible(true);
@@ -50,3 +85,10 @@ const Header = () => {
 };
 
 export default Header;
+
+// as soon as this header loads , useffect ll run after rnedring :- onAuth... listner ll be there
+// and it ll heck for auth everytime
+// so whenver my auth status l change  , it ll automatically reidrects us
+
+
+// 

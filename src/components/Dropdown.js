@@ -13,14 +13,14 @@ const Dropdown = ({ onMouseLeaveContainer }) => {
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
-        navigate("/");
+        // Sign-out successful. (naivgate done from central level ie header)
       })
       .catch((error) => {
         // An error happened.
-        // TODO: SHOW A TOAST
         console.log(error);
-        navigate("/error"); //TODO: TO BUILD COOL ERROR PAGE
+        navigate("/error");
+        // TODO: SHOW A TOAST
+        //TODO: TO BUILD COOL ERROR PAGE
       });
   };
   return (
