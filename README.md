@@ -20,6 +20,11 @@
 - BugFix: if the user is not logged in Redirect /browse to Login Page  and vice-versa
 - Unsubscribed to the onAuthStateChanged callback
 - Add hardcoded values to the constants file
+- Register TMDB API and create an app and get access token
+- Get Data from TMDB now playing movies list API or u can use any API (have used here discover TV API only for korean series)
+- updating the store with TV series list
+- creating custom hook for tvseries list
+
 
 
 ## Features (Exploring the website to be build)
