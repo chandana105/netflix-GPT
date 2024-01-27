@@ -6,12 +6,10 @@ import { useEffect } from "react";
 const useTVSeries = () => {
   const dispatch = useDispatch();
 
-  //   https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=1&with_origin_country=KR&with_original_language=ko
-  // Fetch data from TMDB API  and update store
   const getTVSeries = async () => {
     try {
       const response = await fetch(
-        "https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=1&with_origin_country=KR&with_original_language=ko",
+        "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_origin_country=KR",
         API_OPTIONS
       );
       const json = await response.json();
