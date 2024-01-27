@@ -1,13 +1,31 @@
 import React from "react";
 import Header from "./Header";
-import useTVSeries from "../utils/useTVSeries";
+import useTVSeries from "../hooks/useTVSeries";
+import { useSelector } from "react-redux";
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
   useTVSeries();
 
+  const series = useSelector((store) => store?.series?.series);
+  const displaySeries = series?.[0];
+
+  console.log(displaySeries);
+
   return (
     <div>
       <Header />
+      <MainContainer />
+      <SecondaryContainer />
+      {/* 
+       - Main Container
+         -Video background
+         -Video title
+       - Secondary Container
+         - Movie list * n
+            - movie cards * n
+      */}
     </div>
   );
 };
@@ -24,3 +42,13 @@ export default Browse;
 // movie slice:- and all data all movies to it
 
 // so nowbrowse comp should only have my render logic
+
+// now to get the dispaly movie , its trailer nad info, so lets take out the movie form the movies stored in store
+
+// lets just think how to design the browse page first
+
+// this whole browse page of netflix is dividied into two parts :-
+// 1st part is the main video part  :- where we have one movie (most trneding movie/recommneded movie)
+// 2nd part :- is the movie recommendation :- whcih sohws movies list
+
+// spend time in planning UI (never make it directly)
