@@ -14,7 +14,7 @@ const MainContainer = () => {
   const { name, overview, id } = mainSeries;
 
   return (
-    <div className="pt-56 ">
+    <div>
       <VideoTitle name={name} overview={overview} />
       <VideoBackground seriesId={id} />
     </div>
