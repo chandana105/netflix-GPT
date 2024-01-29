@@ -1,17 +1,11 @@
 import React from "react";
 import Header from "./Header";
 import useTVSeries from "../hooks/useTVSeries";
-import { useSelector } from "react-redux";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
   useTVSeries();
-
-  const series = useSelector((store) => store?.series?.series);
-  const displaySeries = series?.[0];
-
-  console.log(displaySeries);
 
   return (
     <div>

@@ -4,7 +4,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 
 const VideoTitle = ({ name, overview }) => {
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 pl-20">
       <h1 className="font-bold text-2xl italic">{name}</h1>
       <p className="text-base font-medium w-1/4">{overview}</p>
       {/* textwhite */}

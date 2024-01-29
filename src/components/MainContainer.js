@@ -9,14 +9,12 @@ const MainContainer = () => {
   // if (series === null) return; //when no series are there then return :- early return
   if (!series) return;
 
-  const mainSeries = series[1]; //well, for now its series[1] by default its series[0]
-
-  console.log(mainSeries);
+  const mainSeries = series[0]; //well, for now its series[1] by default its series[0]
 
   const { name, overview, id } = mainSeries;
 
   return (
-    <div className="pt-56 pl-20">
+    <div className="pt-56 ">
       <VideoTitle name={name} overview={overview} />
       <VideoBackground seriesId={id} />
     </div>
