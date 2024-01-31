@@ -1,11 +1,17 @@
 import React from "react";
 import Header from "./Header";
-import useTVSeries from "../hooks/useTVSeries";
+import useTVSeries from "../hooks/useLatestTVSeries";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import useOnTheAirTVSeries from "../hooks/useOnTheAirTVSeries";
+import usePopularTVSeries from "../hooks/usePopularTVSeries";
+import useTopRatedTVSeries from "../hooks/useTopRatedTVSeries";
 
 const Browse = () => {
   useTVSeries();
+  useOnTheAirTVSeries();
+  usePopularTVSeries();
+  useTopRatedTVSeries();
 
   return (
     <div>
@@ -46,3 +52,5 @@ export default Browse;
 // 2nd part :- is the movie recommendation :- whcih sohws movies list
 
 // spend time in planning UI (never make it directly)
+
+// im boerwse page tihs hook is fetcihgn the now playign mivie and udpating the sote useTVSeries();

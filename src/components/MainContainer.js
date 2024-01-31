@@ -4,12 +4,12 @@ import VideoTitle from "./VideoTitle";
 import { useSelector } from "react-redux";
 
 const MainContainer = () => {
-  const series = useSelector((store) => store?.series?.series);
+  const latestSeries = useSelector((store) => store?.series?.latestSeries);
 
   // if (series === null) return; //when no series are there then return :- early return
-  if (!series) return;
+  if (!latestSeries) return;
 
-  const mainSeries = series[0]; //well, for now its series[1] by default its series[0]
+  const mainSeries = latestSeries[0]; //well, for now its series[1] by default its series[0]
 
   const { name, overview, id } = mainSeries;
 
