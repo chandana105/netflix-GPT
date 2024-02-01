@@ -17,10 +17,24 @@
 - Created Redux Store with User Slice
 - Updated user profile
 - BugFix: Sign up user display name and profile picture update
-- BugFix: if the user is not logged in Redirect /browse to Login Page  and vice-versa
+- BugFix: if the user is not logged in Redirect /browse to Login Page and vice-versa
 - Unsubscribed to the onAuthStateChanged callback
 - Add hardcoded values to the constants file
-
+- Register TMDB API and create an app and get access token
+- Get Data from TMDB now playing movies list API or u can use any API (have used here discover TV API only for korean series)
+- creating custom hook for tvseries list
+- Created Movie Slice
+- updating the store with TV series list
+- Planning for MainContainer and SecondaryContainer
+- Fetch Data fro trailer video
+- Updated the store with trailer video
+- Embeded the you tube video and make it autoplay and mute
+- Added Tailwind Classes to make main container look awesome
+- Build Secondary container
+- created SeriesList and SeriesCard and rendered the movies categories into it
+- TMDB IMG CDN URL
+- Added Tailwind Classes to make secondary container look awesome
+- diffrent hooks for fetching diffrent categories of sereis :- eg:-useTrendingSeries
 
 ## Features (Exploring the website to be build)
 
