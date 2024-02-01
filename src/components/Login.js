@@ -12,7 +12,16 @@ import {
 import { auth } from "../utils/firebase";
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
-import { LOGIN_PAGE_BG_IMAGE, USER_AVATAR } from "../utils/constants";
+import {
+  ALREADY_REGISTERED,
+  LOGIN_PAGE_BG_IMAGE,
+  NEW_TO_NETFLIX,
+  SIGN_IN_BUTTON_TEXT,
+  SIGN_IN_NOW,
+  SIGN_UP_BUTTON_TEXT,
+  SIGN_UP_NOW,
+  USER_AVATAR,
+} from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -119,7 +128,7 @@ const Login = () => {
         className="text-white absolute right-0 left-0 w-4/12 bg-black bg-opacity-90  my-20 mx-auto rounded-md py-12 px-14"
       >
         <h1 className="font-bold text-3xl py-4">
-          {isSignInForm ? "Sign In" : "Sign Up"}
+          {isSignInForm ? SIGN_IN_BUTTON_TEXT : SIGN_UP_BUTTON_TEXT}
         </h1>
         {!isSignInForm && (
           <>
@@ -150,12 +159,12 @@ const Login = () => {
           className="rounded-md p-4 my-4 font-bold bg-red-700 w-full "
           onClick={handleButtonClick}
         >
-          {isSignInForm ? "Sign In" : "Sign Up"}
+          {isSignInForm ? SIGN_IN_BUTTON_TEXT : SIGN_UP_BUTTON_TEXT}
         </button>
         <p className="py-4">
-          {isSignInForm ? "New to Netflix? " : "Already Registered? "}
+          {isSignInForm ? NEW_TO_NETFLIX : ALREADY_REGISTERED}
           <span className="font-bold cursor-pointer" onClick={toggleSignInForm}>
-            {isSignInForm ? "Sign up now" : "Sign In Now"}
+            {isSignInForm ? SIGN_UP_NOW : SIGN_IN_NOW}
           </span>
         </p>
       </form>

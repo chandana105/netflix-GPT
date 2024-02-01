@@ -5,7 +5,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { LOGO } from "../utils/constants";
+import {
+  GPT_SEARCH_BUTTON_TEXT,
+  HOME_BUTTON_TEXT,
+  LOGO,
+  lang,
+} from "../utils/constants";
+import { toggleGpt } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/languageSlice";
 
 const Header = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -14,6 +21,10 @@ const Header = () => {
   const auth = getAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const showGptSearch = useSelector((store) => store?.gpt?.showGptSearch);
+  const defaultLanguage = useSelector(
+    (store) => store?.language?.defaultLanguage
+  );
 
   // we are checking auth everytime the page loads
   useEffect(() => {
@@ -56,6 +67,16 @@ const Header = () => {
       setIsDropdownVisible(false);
     }
   };
+  // TODO:to make all text to have size
+
+  const handleToggleGptView = () => {
+    dispatch(toggleGpt());
+  };
+
+  const handleLanguageChange = (e) => {
+    console.log(e.target.value, "target");
+    dispatch(changeLanguage(e.target.value));
+  };
 
   return (
     <>
@@ -64,13 +85,34 @@ const Header = () => {
           <img src={LOGO} className="w-52" alt="logo" />
         </div>
         {user && (
-          <div ref={dropdownRef}>
-            <img
-              src={user?.photoURL}
-              className="rounded mx-4 cursor-pointer w-10  "
-              alt="profile"
-              onMouseEnter={handleShowDropdown}
-            />
+          <div className="flex gap-3">
+            {showGptSearch && (
+              <select
+                className="bg-black text-white text-base px-3 py-2 cursor-pointer rounded-md"
+                onChange={handleLanguageChange}
+              >
+                {lang.map((language) => (
+                  <option value={language.identifier} key={language.identifier}>
+                    {language.name}
+                  </option>
+                ))}
+              </select>
+            )}
+            <button
+              className="bg-red-700 px-3 py-2 rounded-md text-base text-white font-semibold "
+              onClick={handleToggleGptView}
+            >
+              {!showGptSearch ? GPT_SEARCH_BUTTON_TEXT : HOME_BUTTON_TEXT}
+            </button>
+
+            <div ref={dropdownRef}>
+              <img
+                src={user?.photoURL}
+                className="rounded mx-4 cursor-pointer w-10  "
+                alt="profile"
+                onMouseEnter={handleShowDropdown}
+              />
+            </div>
           </div>
         )}
       </div>

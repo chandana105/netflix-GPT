@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { SIGN_OUT_BUTTON_TEXT } from "../utils/constants";
 
 const Dropdown = ({ onMouseLeaveContainer }) => {
   const auth = getAuth();
@@ -33,14 +34,12 @@ const Dropdown = ({ onMouseLeaveContainer }) => {
         <li className="py-2 px-4 text-base cursor-pointer ">
           Hi, {user?.displayName}
         </li>
-        <li className="py-2 px-4 text-base cursor-pointer">Manage Profiles</li>
-
         <div className="w-full h-[0.01rem] bg-gray-500"></div>
         <li
           className="py-2 text-center text-base cursor-pointer"
           onClick={handleSignOut}
         >
-          Sign out of Netflix
+          {SIGN_OUT_BUTTON_TEXT}
         </li>
       </ul>
     </div>

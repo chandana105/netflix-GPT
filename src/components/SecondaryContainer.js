@@ -1,6 +1,7 @@
 import React from "react";
 import SeriesList from "./SeriesList";
 import { useSelector } from "react-redux";
+import { LATEST, ON_THE_AIR, POPULAR, TOP_RATED } from "../utils/constants";
 
 const SecondaryContainer = () => {
   const latestSeries = useSelector((store) => store?.series?.latestSeries);
@@ -12,10 +13,10 @@ const SecondaryContainer = () => {
     latestSeries && (
       <div className="bg-black text-white ">
         <div className="-mt-52 relative z-10 space-y-7">
-          <SeriesList title={"Latest"} series={latestSeries} />
-          <SeriesList title={"On The Air"} series={onTheAirSeries} />
-          <SeriesList title={"Popular"} series={popularSeries} />
-          <SeriesList title={"Top Rated"} series={topRatedSeries} />
+          <SeriesList title={LATEST} series={latestSeries} />
+          <SeriesList title={ON_THE_AIR} series={onTheAirSeries} />
+          <SeriesList title={POPULAR} series={popularSeries} />
+          <SeriesList title={TOP_RATED} series={topRatedSeries} />
         </div>
 
         {/* 
