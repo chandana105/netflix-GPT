@@ -11,12 +11,12 @@ const MainContainer = () => {
 
   const mainSeries = latestSeries[0]; //well, for now its series[1] by default its series[0]
 
-  const { name, overview, id } = mainSeries;
+  const { name, overview, id, poster_path } = mainSeries;
 
   return (
     <div>
       <VideoTitle name={name} overview={overview} />
-      <VideoBackground seriesId={id} />
+      <VideoBackground seriesId={id} poster={poster_path} />
     </div>
   );
 };

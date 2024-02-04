@@ -33,24 +33,11 @@ export const TOP_RATED = "Top Rated";
 export const PLAY_BUTTON_TEXT = "Play";
 export const MORE_INFO = "More Info";
 
-export const lang = [
+export const SUPPORTED_LANGUAGES = [
   { identifier: "en", name: "English" },
-  { identifier: "hindi", name: "Hindi" },
+  { identifier: "hi", name: "Hindi" },
   { identifier: "pb", name: "Punjabi" },
   { identifier: "ko", name: "Korean" },
 ];
 
-export const languageWords = {
-  inputText: {
-    en: "What do you want to search?",
-    hindi: "आप क्या खोजना चाहते हैं?",
-    pb: "ਤੁਸੀਂ ਕੀ ਖੋਜਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
-    ko: "무엇을 검색하시겠습니까? mueos-eul geomsaeghasigessseubnikka?",
-  },
-  searchBtn: {
-    en: "Search",
-    hindi: "खोज",
-    pb: "ਖੋਜ",
-    ko: "찾다 chajda",
-  },
-};
+// Every text should come from cosntants file

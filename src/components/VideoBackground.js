@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import useSeriesTrailer from "../hooks/useSeriesTrailer";
 import { useSelector } from "react-redux";
+import { IMG_CDN_URL } from "../utils/constants";
 
-const VideoBackground = ({ seriesId }) => {
-  const trailerVideo = useSelector((store) => store?.series?.trailerVideo);
-
+const VideoBackground = ({ seriesId, poster }) => {
   useSeriesTrailer(seriesId);
 
+  const trailerVideo = useSelector((store) => store?.series?.trailerVideo);
+
+  // const [videoEnded, setVideoEnded] = useState(false);
+
+  // const handleVideoEnd = () => {
+  //   console.log("here");
+  //   setVideoEnded(true);
+  // };
+
   return (
-    <div>
-      <iframe
-        className="w-screen aspect-video"
-        src={`https://www.youtube.com/embed/${trailerVideo?.key}?autoplay=1&mute=1`}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      ></iframe>
+    <div className="w-full">
+      {trailerVideo ? (
+        <iframe
+          className="w-screen aspect-video"
+          src={`https://www.youtube.com/embed/${trailerVideo?.key}?autoplay=1&mute=1`}
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          // onEnded={handleVideoEnd}
+        ></iframe>
+      ) : (
+        <img
+          src={`${IMG_CDN_URL}${poster}`}
+          alt="poster"
+          className="w-screen aspect-video "
+        />
+      )}
     </div>
   );
 };

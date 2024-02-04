@@ -36,10 +36,12 @@
 - Added Tailwind Classes to make secondary container look awesome
 - diffrent hooks for fetching diffrent categories of sereis :- eg:-useTrendingSeries
 - Putting all the constants in constants file
-- GPT Search Component :- gpt search button, search bar
-- Toggle GPT Search in Browse Page
-- gptslice
-- (Feature) Creating language changing in GPT search component
+- GPT Search Feature :- gpt search button, search bar
+- Toggle GPT Search in Browse Page (GPT SEARCH PAGE)
+- GPT Search Bar
+- gptslice 
+- (Feature) Creating language changing in GPT search component (MultiLanugage Feature)
+
 
 ## Features (Exploring the website to be build)
 

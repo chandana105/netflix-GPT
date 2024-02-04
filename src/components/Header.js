@@ -9,10 +9,11 @@ import {
   GPT_SEARCH_BUTTON_TEXT,
   HOME_BUTTON_TEXT,
   LOGO,
+  SUPPORTED_LANGUAGES,
   lang,
 } from "../utils/constants";
-import { toggleGpt } from "../utils/gptSlice";
-import { changeLanguage } from "../utils/languageSlice";
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -69,8 +70,8 @@ const Header = () => {
   };
   // TODO:to make all text to have size
 
-  const handleToggleGptView = () => {
-    dispatch(toggleGpt());
+  const handleToggleGptSearchView = () => {
+    dispatch(toggleGptSearchView());
   };
 
   const handleLanguageChange = (e) => {
@@ -91,7 +92,7 @@ const Header = () => {
                 className="bg-black text-white text-base px-3 py-2 cursor-pointer rounded-md"
                 onChange={handleLanguageChange}
               >
-                {lang.map((language) => (
+                {SUPPORTED_LANGUAGES.map((language) => (
                   <option value={language.identifier} key={language.identifier}>
                     {language.name}
                   </option>
@@ -100,7 +101,7 @@ const Header = () => {
             )}
             <button
               className="bg-red-700 px-3 py-2 rounded-md text-base text-white font-semibold "
-              onClick={handleToggleGptView}
+              onClick={handleToggleGptSearchView}
             >
               {!showGptSearch ? GPT_SEARCH_BUTTON_TEXT : HOME_BUTTON_TEXT}
             </button>
