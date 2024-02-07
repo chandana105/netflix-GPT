@@ -1,10 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addOnTheAirSeries } from "../utils/seriesSlice";
 import { useEffect } from "react";
 
 const useOnTheAirTVSeries = () => {
   const dispatch = useDispatch();
+
+  const onTheAirSeries = useSelector((store) => store.series.onTheAirSeries);
 
   const getTVSeries = async () => {
     try {
@@ -26,7 +28,7 @@ const useOnTheAirTVSeries = () => {
   };
 
   useEffect(() => {
-    getTVSeries();
+    !onTheAirSeries && getTVSeries();
   }, []);
 };
 

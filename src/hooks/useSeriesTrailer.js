@@ -1,10 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addTrailerVideo } from "../utils/seriesSlice";
 import { useEffect } from "react";
 
 const useSeriesTrailer = (seriesId) => {
   const dispatch = useDispatch();
+
+  const trailerVideo = useSelector((store) => store.series.trailerVideo);
 
   // Fetch Trailer based on sereis id and updating the store with trailer video
   const getTVSeriesTrailer = async () => {
@@ -29,8 +31,8 @@ const useSeriesTrailer = (seriesId) => {
   };
 
   useEffect(() => {
-    getTVSeriesTrailer();
-  }, [seriesId]); //changed as was not updatign if i was chainging series[2] 
+    !trailerVideo && getTVSeriesTrailer();
+  }, [seriesId]); //changed as was not updatign if i was chainging series[2]
 };
 
 export default useSeriesTrailer;
