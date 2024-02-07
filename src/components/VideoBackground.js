@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useSeriesTrailer from "../hooks/useSeriesTrailer";
 import { useSelector } from "react-redux";
 import { IMG_CDN_URL } from "../utils/constants";

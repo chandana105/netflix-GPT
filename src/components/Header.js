@@ -10,9 +10,8 @@ import {
   HOME_BUTTON_TEXT,
   LOGO,
   SUPPORTED_LANGUAGES,
-  lang,
 } from "../utils/constants";
-import { toggleGptSearchView } from "../utils/gptSlice";
+import { clearGptMovieResults, toggleGptSearchView } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
@@ -23,9 +22,6 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const showGptSearch = useSelector((store) => store?.gpt?.showGptSearch);
-  const defaultLanguage = useSelector(
-    (store) => store?.language?.defaultLanguage
-  );
 
   // we are checking auth everytime the page loads
   useEffect(() => {
@@ -72,10 +68,10 @@ const Header = () => {
 
   const handleToggleGptSearchView = () => {
     dispatch(toggleGptSearchView());
+    dispatch(clearGptMovieResults());
   };
 
   const handleLanguageChange = (e) => {
-    console.log(e.target.value, "target");
     dispatch(changeLanguage(e.target.value));
   };
 
