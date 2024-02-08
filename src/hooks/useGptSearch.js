@@ -32,7 +32,6 @@ const useGptSearch = (searchTextRef) => {
       //TODO: error handling pg (show it below the aearch bar that gpt search failed)
     }
 
-    console.log(gptSearchResults);
     const gptMovies = gptSearchResults.choices[0].message.content.split(",");
 
     // for each of these movies ll try to find out the search in tmdb movie api
@@ -47,7 +46,6 @@ const useGptSearch = (searchTextRef) => {
     const tmdbResults = await Promise.all(promiseArray);
 
     // once we get these movies, we should push them in the store and then use in moivesuggestions comp
-    console.log(tmdbResults);
 
     dispatch(
       addGptMoviesResults({ movieNames: gptMovies, movieResults: tmdbResults })

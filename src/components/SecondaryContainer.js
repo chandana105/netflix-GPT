@@ -12,7 +12,7 @@ const SecondaryContainer = () => {
   return (
     latestSeries && (
       <div className="bg-black text-white ">
-        <div className="-mt-52 relative z-10 space-y-7">
+        <div className="md:-mt-52 relative z-10 space-y-7">
           <SeriesList title={LATEST} series={latestSeries} />
           <SeriesList title={ON_THE_AIR} series={onTheAirSeries} />
           <SeriesList title={POPULAR} series={popularSeries} />

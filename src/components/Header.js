@@ -42,6 +42,7 @@ const Header = () => {
       } else {
         // remove the user form store
         dispatch(removeUser());
+        dispatch(clearGptMovieResults());
         navigate("/");
       }
     });
@@ -77,9 +78,9 @@ const Header = () => {
 
   return (
     <>
-      <div className="absolute w-full px-12 bg-gradient-to-b  from-black z-10 flex justify-between items-center  ">
+      <div className="absolute w-full px-3 bg-gradient-to-b  from-black z-10 flex justify-between items-center flex-col md:flex-row">
         <div>
-          <img src={LOGO} className="w-52" alt="logo" />
+          <img src={LOGO} className="w-44 md:w-52" alt="logo" />
         </div>
         {user && (
           <div className="flex gap-3">
@@ -96,7 +97,7 @@ const Header = () => {
               </select>
             )}
             <button
-              className="bg-red-700 px-3 py-2 rounded-md text-base text-white font-semibold "
+              className="bg-red-700 px-3 py-2 rounded-md text-sm  md:text-base text-white font-semibold "
               onClick={handleToggleGptSearchView}
             >
               {!showGptSearch ? GPT_SEARCH_BUTTON_TEXT : HOME_BUTTON_TEXT}
@@ -134,3 +135,12 @@ export default Header;
 // it keeps the uath status :- whenver the user loggs in , logs out :- it kkeos the trakc ofi t
 // so if my comp unmounts wanna unsubscribe tihs laso
 // this oinUAthstate change :- returns unsibscribe fnx
+
+// bg-black sm:bg-green-600 md:bg-blue-500 bg-black:by default mob screen
+// sm:bg-green-600 :- for tabs
+// md:bg-blue-500 : -for desktop
+
+// sm: if my app is greater than smaller devices ie tab
+// md: if my screen is greater than mediumn devices ie desktop
+
+// three types of devices:- small/medium/large

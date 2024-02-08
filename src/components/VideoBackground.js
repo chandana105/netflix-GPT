@@ -16,7 +16,7 @@ const VideoBackground = ({ seriesId, poster }) => {
   // };
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-[40%] md:pt-0">
       {trailerVideo ? (
         <iframe
           className="w-screen aspect-video"

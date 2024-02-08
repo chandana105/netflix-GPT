@@ -14,7 +14,7 @@ const MainContainer = () => {
   const { name, overview, id, poster_path } = mainSeries;
 
   return (
-    <div>
+    <div className="bg-black ">
       <VideoTitle name={name} overview={overview} />
       <VideoBackground seriesId={id} poster={poster_path} />
     </div>

@@ -26,7 +26,7 @@ const Dropdown = ({ onMouseLeaveContainer }) => {
   };
   return (
     <div
-      className=" flex flex-col justify-center items-end z-10 absolute top-16  right-[4.5rem] "
+      className=" flex flex-col justify-center items-end z-10 absolute top-16  right-[2.2rem] "
       onMouseLeave={onMouseLeaveContainer}
     >
       <TiArrowSortedUp size={24} className="self-end" />

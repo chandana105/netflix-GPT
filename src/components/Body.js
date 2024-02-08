@@ -38,3 +38,5 @@ export default Body;
 // here best place is Header comp :- whether its borswe page or login page :- header ll be always there
 
 // when using strings : -always use constants
+
+// when making for mob css :- always oen one tab of web and other for mob 

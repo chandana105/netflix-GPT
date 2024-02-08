@@ -39,9 +39,16 @@
 - GPT Search Feature :- gpt search button, search bar
 - Toggle GPT Search in Browse Page (GPT SEARCH PAGE)
 - GPT Search Bar
-- gptslice 
+- gptslice
 - (Feature) Creating language changing in GPT search component (MultiLanugage Feature)
-
+- Get Open AI Api key
+- Gpt Search API Call
+- Fetched Gpt Movie suggestions from TMDB api
+- created gpt Slice and added data over there
+- Reused SeriesList component to make movie suggestion container
+- Memoization
+- Adding .env file (and addign to gitignore)
+- Made our site responsive
 
 ## Features (Exploring the website to be build)
 
