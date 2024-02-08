@@ -5,7 +5,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { LOGO } from "../utils/constants";
+import {
+  GPT_SEARCH_BUTTON_TEXT,
+  HOME_BUTTON_TEXT,
+  LOGO,
+  SUPPORTED_LANGUAGES,
+} from "../utils/constants";
+import { clearGptMovieResults, toggleGptSearchView } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -14,6 +21,7 @@ const Header = () => {
   const auth = getAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const showGptSearch = useSelector((store) => store?.gpt?.showGptSearch);
 
   // we are checking auth everytime the page loads
   useEffect(() => {
@@ -34,6 +42,7 @@ const Header = () => {
       } else {
         // remove the user form store
         dispatch(removeUser());
+        dispatch(clearGptMovieResults());
         navigate("/");
       }
     });
@@ -56,21 +65,52 @@ const Header = () => {
       setIsDropdownVisible(false);
     }
   };
+  // TODO:to make all text to have size
+
+  const handleToggleGptSearchView = () => {
+    dispatch(toggleGptSearchView());
+    dispatch(clearGptMovieResults());
+  };
+
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
 
   return (
     <>
-      <div className="absolute w-full px-12 bg-gradient-to-b  from-black z-10 flex justify-between items-center  ">
+      <div className="absolute w-full px-3 bg-gradient-to-b  from-black z-10 flex justify-between items-center flex-col md:flex-row">
         <div>
-          <img src={LOGO} className="w-52" alt="logo" />
+          <img src={LOGO} className="w-44 md:w-52" alt="logo" />
         </div>
         {user && (
-          <div ref={dropdownRef}>
-            <img
-              src={user?.photoURL}
-              className="rounded mx-4 cursor-pointer w-10  "
-              alt="profile"
-              onMouseEnter={handleShowDropdown}
-            />
+          <div className="flex gap-3">
+            {showGptSearch && (
+              <select
+                className="bg-black text-white text-base px-3 py-2 cursor-pointer rounded-md"
+                onChange={handleLanguageChange}
+              >
+                {SUPPORTED_LANGUAGES.map((language) => (
+                  <option value={language.identifier} key={language.identifier}>
+                    {language.name}
+                  </option>
+                ))}
+              </select>
+            )}
+            <button
+              className="bg-red-700 px-3 py-2 rounded-md text-sm  md:text-base text-white font-semibold "
+              onClick={handleToggleGptSearchView}
+            >
+              {!showGptSearch ? GPT_SEARCH_BUTTON_TEXT : HOME_BUTTON_TEXT}
+            </button>
+
+            <div ref={dropdownRef}>
+              <img
+                src={user?.photoURL}
+                className="rounded mx-4 cursor-pointer w-10  "
+                alt="profile"
+                onMouseEnter={handleShowDropdown}
+              />
+            </div>
           </div>
         )}
       </div>
@@ -95,3 +135,12 @@ export default Header;
 // it keeps the uath status :- whenver the user loggs in , logs out :- it kkeos the trakc ofi t
 // so if my comp unmounts wanna unsubscribe tihs laso
 // this oinUAthstate change :- returns unsibscribe fnx
+
+// bg-black sm:bg-green-600 md:bg-blue-500 bg-black:by default mob screen
+// sm:bg-green-600 :- for tabs
+// md:bg-blue-500 : -for desktop
+
+// sm: if my app is greater than smaller devices ie tab
+// md: if my screen is greater than mediumn devices ie desktop
+
+// three types of devices:- small/medium/large

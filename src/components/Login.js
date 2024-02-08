@@ -12,7 +12,16 @@ import {
 import { auth } from "../utils/firebase";
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
-import { LOGIN_PAGE_BG_IMAGE, USER_AVATAR } from "../utils/constants";
+import {
+  ALREADY_REGISTERED,
+  LOGIN_PAGE_BG_IMAGE,
+  NEW_TO_NETFLIX,
+  SIGN_IN_BUTTON_TEXT,
+  SIGN_IN_NOW,
+  SIGN_UP_BUTTON_TEXT,
+  SIGN_UP_NOW,
+  USER_AVATAR,
+} from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -111,15 +120,19 @@ const Login = () => {
     <div className="relative">
       <Header />
       <div className="absolute">
-        <img src={LOGIN_PAGE_BG_IMAGE} alt="bg-img-login " />
+        <img
+          src={LOGIN_PAGE_BG_IMAGE}
+          alt="bg-img-login "
+          className="h-screen object-cover md:h-full"
+        />
       </div>
       <form
         noValidate
         onSubmit={(e) => e.preventDefault()}
-        className="text-white absolute right-0 left-0 w-4/12 bg-black bg-opacity-90  my-20 mx-auto rounded-md py-12 px-14"
+        className="text-white absolute right-0 left-0 md:w-4/12 bg-black bg-opacity-90  my-20 m-4  md:mx-auto rounded-md py-12 px-14 "
       >
-        <h1 className="font-bold text-3xl py-4">
-          {isSignInForm ? "Sign In" : "Sign Up"}
+        <h1 className="font-bold text-xl md:text-3xl py-4">
+          {isSignInForm ? SIGN_IN_BUTTON_TEXT : SIGN_UP_BUTTON_TEXT}
         </h1>
         {!isSignInForm && (
           <>
@@ -127,7 +140,7 @@ const Login = () => {
               ref={fullNameRef}
               type="text"
               placeholder="Full Name"
-              className="rounded-md p-4 my-4 bg-gray-800 w-full "
+              className="rounded-md p-4 my-4 bg-gray-800 w-full text-sm  md:text-base "
             />
           </>
         )}
@@ -135,27 +148,32 @@ const Login = () => {
           ref={emailRef}
           type="email"
           placeholder="Email Address"
-          className="rounded-md p-4 mt-4 mb-2  bg-gray-800 w-full "
+          className="rounded-md p-4 mt-4 mb-2  bg-gray-800 w-full text-sm  md:text-base "
         />
         <input
           ref={passwordRef}
           type="password"
           placeholder="Password"
-          className="rounded-md p-4 mt-4 mb-2 bg-gray-800 w-full "
+          className="rounded-md p-4 mt-4 mb-2 bg-gray-800 w-full text-sm  md:text-base "
         />
 
-        <p className="text-sm mb-2  text-orange-600">{errorMessage || null}</p>
+        <p className="text-xs md:text-sm mb-2  text-orange-600">
+          {errorMessage || null}
+        </p>
 
         <button
-          className="rounded-md p-4 my-4 font-bold bg-red-700 w-full "
+          className="rounded-md p-4 my-4 font-bold bg-red-700 w-full text-sm  md:text-base "
           onClick={handleButtonClick}
         >
-          {isSignInForm ? "Sign In" : "Sign Up"}
+          {isSignInForm ? SIGN_IN_BUTTON_TEXT : SIGN_UP_BUTTON_TEXT}
         </button>
-        <p className="py-4">
-          {isSignInForm ? "New to Netflix? " : "Already Registered? "}
-          <span className="font-bold cursor-pointer" onClick={toggleSignInForm}>
-            {isSignInForm ? "Sign up now" : "Sign In Now"}
+        <p className="py-4 text-sm  md:text-base">
+          {isSignInForm ? NEW_TO_NETFLIX : ALREADY_REGISTERED}
+          <span
+            className="font-bold cursor-pointer text-sm  md:text-base"
+            onClick={toggleSignInForm}
+          >
+            {isSignInForm ? SIGN_UP_NOW : SIGN_IN_NOW}
           </span>
         </p>
       </form>
