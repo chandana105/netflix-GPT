@@ -1,119 +1,66 @@
-# Namastey React Netflix GPT
+# NETFLIX GPT
 
-- Create React App
-- Configured TailwindCSS
-- Header
-- Routing of App
-- Login Form
-- Sign up form
-- Form Validations
-- useRef hook
-- (my way performace vice improved the code)
-- Firebase setup (for using backend for authentication)
-- Deploying app to production (using firebase hosting)
-- Create SignUp user Account using firebase
-- Implement Sign In User API
-- Implement Sign out User API
-- Created Redux Store with User Slice
-- Updated user profile
-- BugFix: Sign up user display name and profile picture update
-- BugFix: if the user is not logged in Redirect /browse to Login Page and vice-versa
-- Unsubscribed to the onAuthStateChanged callback
-- Add hardcoded values to the constants file
-- Register TMDB API and create an app and get access token
-- Get Data from TMDB now playing movies list API or u can use any API (have used here discover TV API only for korean series)
-- creating custom hook for tvseries list
-- Created Movie Slice
-- updating the store with TV series list
-- Planning for MainContainer and SecondaryContainer
-- Fetch Data fro trailer video
-- Updated the store with trailer video
-- Embeded the you tube video and make it autoplay and mute
-- Added Tailwind Classes to make main container look awesome
-- Build Secondary container
-- created SeriesList and SeriesCard and rendered the movies categories into it
-- TMDB IMG CDN URL
-- Added Tailwind Classes to make secondary container look awesome
-- diffrent hooks for fetching diffrent categories of sereis :- eg:-useTrendingSeries
-- Putting all the constants in constants file
-- GPT Search Feature :- gpt search button, search bar
-- Toggle GPT Search in Browse Page (GPT SEARCH PAGE)
-- GPT Search Bar
-- gptslice
-- (Feature) Creating language changing in GPT search component (MultiLanugage Feature)
-- Get Open AI Api key
-- Gpt Search API Call
-- Fetched Gpt Movie suggestions from TMDB api
-- created gpt Slice and added data over there
-- Reused SeriesList component to make movie suggestion container
-- Memoization
-- Adding .env file (and addign to gitignore)
-- Made our site responsive
+NETFLIX GPT is an advanced movie recommendation platform integrating OpenAI's GPT APIs for personalized movie suggestions, powered by TMDB API. Built with Reactjs, Redux Toolkit, Firebase for authentication, and TailwindCSS for a modern and responsive user experience.
 
-## Features (Exploring the website to be build)
+- Live demo: [VidInteract](https://vidinteract.netlify.app/)
 
-- ### Login/SignUp (Authentication) Page
-  - SignIn / SignUp Form
-  - Redirect to Browse Page
+# Tech Stack
+
+- Reactjs: JavaScript library for building user interfaces.
+- Redux Toolkit: State management library for handling application state.
+- React Router DOM: Declarative routing for React applications.
+- TailwindCSS: Utility-first CSS framework for rapid UI development.
+- React Icons: Library of popular icons for React applications.
+- Firebase: Backend service for authentication and data management.
+- OpenAI: API for advanced natural language processing tasks.
+- TMDB API: Provides access to movie and TV show data.
+
+# Features
+
+- ### SignIn/SignUp (Authentication) Page
+
+  - SignIn / SignUp Form:
+    - Implemented a unified form for both sign-in and sign-up functionalities.
+    - Added custom form validations using custom validation functions without relying on external libraries.
+  - Firebase Authentication:
+    - Configured Firebase for backend authentication.
+    - Created user accounts using Firebase during sign-up.
+    - Implemented Sign In and Sign Out functionalities via Firebase APIs.
+    - Updated user profile details upon authentication.
+    - Utilized Firebase's onAuthStateChanged API to manage user authentication state at the central level of the application.
+  - State Management:
+    - Used Redux store to manage user authentication state, ensuring consistent tracking of whether a user is signed in or signed out.
+
 - ### Browse Page
-  - Header
-  - Main Movie
-    - Trailer in the background
-    - Movie title and Description
-    - Play button
-  - Movie Suggestions
-    - MovieLists \* N
+
+  - Data Fetching:
+    - Fetched movies and series data from the TMDB database using various APIs.
+  - Main Trailer Display:
+    - Displayed the trailer of a trending series in the background with an overlapping description.
+  - Category-Based Lists:
+    - Showcased different series and movie lists based on various categories such as popular, latest, and on-air.
+  - State Management:
+    - Utilized Redux store to persist these lists until the page refreshes, ensuring efficient state management and data persistence during the user's visit.
+
 - ### NetflixGPT Page
-  - Search Bar
-  - movie Suggestions (show)
 
+  - GPT Search Bar and Movie Suggestions:
+    - Implemented a GPT search button and search bar for user interaction.
+    - Provided movie suggestions based on GPT search queries.
+  - State Management with Redux:
+    - Created a Redux slice to manage state for GPT-related functionalities.
+    - Enabled multilingual support with a language-changing feature in the GPT search component.
+  - API Integration:
+    - Integrated OpenAI API to fetch GPT-based movie suggestions.
+    - Utilized TMDB API to gather movie recommendations for enhanced user experience.
+  - Component Reusability:
+    - Demonstrated reusability by adapting the SeriesList component to display movie suggestions, promoting efficient and scalable development practices.
 
-# features
+- ## Additional Details
 
+  - Performance Improvements: Optimized code for enhanced performance.
+  - Centralized hardcoded values in a constants file for improved code maintenance and management.
+  - Memoization: Implemented memoization to avoid redundant API calls and optimize data fetching.
+  - Ensured clean and readable code by separating concerns and implementing custom hooks for various logic and features, such as useTrendingSeries for fetching TV series lists and other categories.
 
-- authentication 
-- routing setup
-- header made 
-- login form designed 
-- converted same login form to sign up form on click of sign up on login form on '/' route
-- (if big form use formkik)
-- vlaidations on own without any libraery here (useRef) (whe ncliked on submit, then nedt ofind out wht is in my emal and password fields, one way is state var other is useref hook )
-- firebase as backend for sign in and sign up (firebase api's)
-- creating signup user account i nfirebase (referce ; firebase documentation )
-- now friebase after login sinpup , to set up our redux tstore, to send info ti tere 
-- onAuthstatechanged firebase 
-- TODO: errorr pge in signout method
-- tmdb apis :- used tmdb is th  db which has all the latest upcomin, new  all them ovies it has and we can use there apis to fetch these details 
-- TODO: to check the workign of unsubscfibe of onaugstaechanged whe nwhat comp unmouts ?
-- fetch getnowl=playing 
-- movies data to moie store slice 
-- usehooks 
-- browser page structre 
-- onem ain movie to create main contaienr 
-- tmdb api has videos wihxh gives trailwr of video ingfo ffromvideo id videos associated wtihthat mvoie
-- readable coe, seperations of concerns (as making diff usehooks fordiff logics )
-- videobg, video title , browser page, css, aspect-vdoieo,  autoplaiyng trailer 
-- then building sec comp movielist, move cards horisozntal float 
-- images for videos  poster path tmdb 
-- secondary contaienr up on main cotnaier 
-- GPT api's gpt  pais we l fetch open api api's , using gpt we ll get movie sufggestions using chat gpt
-- website reposnve much (not much)
-- cusotm hoks ,tmsdb apis 
-- netlfix gpt :- sometiems i dont know wht to atch (movie recommnedation system )
-foer eg to search comedy mives 
-- enable how u can use openai gpt api's :- we ll use gpt api's of openai 
-- when i clicko ngpt search sohw that other iwse main contaien  
-- (here kekepiong everytihng in resdux store)
-- gpt searcbar, and gpr movie suggestuon s comp's 
-- langugate slice (translation of page) redux store , driopdown to sleect langugate (making our app multilingual)
-- when lciekdon search btn it sohuld call to gpt apis and etchthe result , for that need to register ofr gpt apois ie avialble on openai  platofrm.openai.com ,same acc as u use in chatgpt  , perdosnal , apielys 
-- billing cycle 
--  openai node m=npm paxkage
-- after setting pop eia thgorguh opne ai key, then access thhe chat apisl 
-- caling opemn api form client side, syigm api kye can be leaked (should beedoen form backend)
-- pass gpt quenrti n a good manner
-- after getting names resutls of movies form gpt apis, then we ll searc hmovie suggestions of thatm voeis for mtmdb pais  ,search moive pai
-- i ll search forthat 5 mvies in my tmdb db and find out that info and sohw the user 
-- searchign lal mvies , it ll not give at same tiem resutl , give the provmes , weh nall priv mies resolve the nsohw resutls (push that move data resutlsinto store )
-- gpt search page, everytihgn dunamic, mutlitangu, api calls ot open ai, fetchthosie mivems resolve thep rimises, promise.all, reusalbirty of movielist 
-- memoiztion (if i am on gpt page then oges to homepage, why to make api clal agian and agian if data in resux sotre is laready there ), in useffect , of useNowplayign move, if no nowplayign then make apo clalas
+# Screenshots
