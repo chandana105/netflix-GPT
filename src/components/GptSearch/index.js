@@ -1,5 +1,5 @@
 import React from "react";
-import { LOGIN_PAGE_BG_IMAGE } from "../utils/constants";
+import { LOGIN_PAGE_BG_IMAGE } from "../../utils/constants";
 import GptSearchBar from "./GptSearchBar";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 
@@ -22,9 +22,3 @@ const GptSearch = () => {
 };
 
 export default GptSearch;
-
-// moive recommendation system using gpt
-
-// when we click on search btn :- it should make a call to gpt apis and fetch the results
-// for that to register for gpt apis :- avaialble on open ai
-// platform.openai.com

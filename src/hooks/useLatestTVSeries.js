@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
-import { addLatestSeries } from "../utils/seriesSlice";
+import { addLatestSeries } from "../store/seriesSlice";
 import { useEffect } from "react";
 
 const useLatestTVSeries = () => {
@@ -31,6 +31,3 @@ const useLatestTVSeries = () => {
 };
 
 export default useLatestTVSeries;
-
-// dispatch(addLatestSeries(json?.results)); if my store already has this , why to fetch it again
-// this concept is known as memoization

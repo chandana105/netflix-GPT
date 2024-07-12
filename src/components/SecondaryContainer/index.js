@@ -1,7 +1,7 @@
 import React from "react";
 import SeriesList from "./SeriesList";
 import { useSelector } from "react-redux";
-import { LATEST, ON_THE_AIR, POPULAR, TOP_RATED } from "../utils/constants";
+import { LATEST, ON_THE_AIR, POPULAR, TOP_RATED } from "../../utils/constants";
 
 const SecondaryContainer = () => {
   const latestSeries = useSelector((store) => store?.series?.latestSeries);
@@ -18,33 +18,9 @@ const SecondaryContainer = () => {
           <SeriesList title={POPULAR} series={popularSeries} />
           <SeriesList title={TOP_RATED} series={topRatedSeries} />
         </div>
-
-        {/* 
-        SeiresList - Popular
-          seriesCard * n
-        SeiresList - Trending
-          seriesCard * n
-        SeiresList - Latest
-          seriesCard * n
-        SeiresList - NowPlaying
-          seriesCard * n
-      
-      */}
       </div>
     )
   );
 };
 
 export default SecondaryContainer;
-
-// n number of rows of seriesList :- which contains n number of series card
-
-// ab jo seriespdi hian , no w vlai :- usserender krwayenge hum
-
-// Sec contaienr :- will have SeriesList comp
-// then to tell SerieslIst comp :- which serieslist is this :- title, seires passed
-
-// so here wht happens :- main container is absolute , thne comes sec cont
-// sec con :- black
-// it is like box i nthe box
-// and 1st box bg black , its ocntent is coming outside isndie box is out

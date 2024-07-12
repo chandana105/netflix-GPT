@@ -37,5 +37,3 @@ export const {
 } = seriesSlice.actions;
 
 export default seriesSlice.reducer;
-
-// latestSeries :- will be of latest year (or ongoing years)

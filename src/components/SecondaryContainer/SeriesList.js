@@ -17,17 +17,3 @@ const SeriesList = ({ series, title }) => {
 };
 
 export default SeriesList;
-
-{
-  /* <div>
-    <div>
-        <h1>title</h1>
-    </div>
-    <div>
-        seriesCard
-    </div>
-</div> */
-}
-
-// the ocntaner havign moviecards :- is overflowsing :- its going beyond the width fo screen
-// so ll l add overflow-x-scroll to tis parent

@@ -1,8 +1,8 @@
 import React from "react";
-import { IMG_CDN_URL } from "../utils/constants";
+import { IMG_CDN_URL } from "../../utils/constants";
 
 const SeriesCard = ({ poster }) => {
-  if (!poster) return null; //TODO: DISPLQY NAME OF IT THEN
+  if (!poster) return null;
   return (
     <div className="w-32 md:w-44">
       <img

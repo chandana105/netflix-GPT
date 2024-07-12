@@ -6,5 +6,3 @@ const openai = new OpenAI({
 });
 
 export default openai;
-
-// open ai is not initiated ,setup, now we ll use its chat api of openai

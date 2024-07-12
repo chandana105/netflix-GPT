@@ -66,3 +66,54 @@
 - ### NetflixGPT Page
   - Search Bar
   - movie Suggestions (show)
+
+
+# features
+
+
+- authentication 
+- routing setup
+- header made 
+- login form designed 
+- converted same login form to sign up form on click of sign up on login form on '/' route
+- (if big form use formkik)
+- vlaidations on own without any libraery here (useRef) (whe ncliked on submit, then nedt ofind out wht is in my emal and password fields, one way is state var other is useref hook )
+- firebase as backend for sign in and sign up (firebase api's)
+- creating signup user account i nfirebase (referce ; firebase documentation )
+- now friebase after login sinpup , to set up our redux tstore, to send info ti tere 
+- onAuthstatechanged firebase 
+- TODO: errorr pge in signout method
+- tmdb apis :- used tmdb is th  db which has all the latest upcomin, new  all them ovies it has and we can use there apis to fetch these details 
+- TODO: to check the workign of unsubscfibe of onaugstaechanged whe nwhat comp unmouts ?
+- fetch getnowl=playing 
+- movies data to moie store slice 
+- usehooks 
+- browser page structre 
+- onem ain movie to create main contaienr 
+- tmdb api has videos wihxh gives trailwr of video ingfo ffromvideo id videos associated wtihthat mvoie
+- readable coe, seperations of concerns (as making diff usehooks fordiff logics )
+- videobg, video title , browser page, css, aspect-vdoieo,  autoplaiyng trailer 
+- then building sec comp movielist, move cards horisozntal float 
+- images for videos  poster path tmdb 
+- secondary contaienr up on main cotnaier 
+- GPT api's gpt  pais we l fetch open api api's , using gpt we ll get movie sufggestions using chat gpt
+- website reposnve much (not much)
+- cusotm hoks ,tmsdb apis 
+- netlfix gpt :- sometiems i dont know wht to atch (movie recommnedation system )
+foer eg to search comedy mives 
+- enable how u can use openai gpt api's :- we ll use gpt api's of openai 
+- when i clicko ngpt search sohw that other iwse main contaien  
+- (here kekepiong everytihng in resdux store)
+- gpt searcbar, and gpr movie suggestuon s comp's 
+- langugate slice (translation of page) redux store , driopdown to sleect langugate (making our app multilingual)
+- when lciekdon search btn it sohuld call to gpt apis and etchthe result , for that need to register ofr gpt apois ie avialble on openai  platofrm.openai.com ,same acc as u use in chatgpt  , perdosnal , apielys 
+- billing cycle 
+-  openai node m=npm paxkage
+- after setting pop eia thgorguh opne ai key, then access thhe chat apisl 
+- caling opemn api form client side, syigm api kye can be leaked (should beedoen form backend)
+- pass gpt quenrti n a good manner
+- after getting names resutls of movies form gpt apis, then we ll searc hmovie suggestions of thatm voeis for mtmdb pais  ,search moive pai
+- i ll search forthat 5 mvies in my tmdb db and find out that info and sohw the user 
+- searchign lal mvies , it ll not give at same tiem resutl , give the provmes , weh nall priv mies resolve the nsohw resutls (push that move data resutlsinto store )
+- gpt search page, everytihgn dunamic, mutlitangu, api calls ot open ai, fetchthosie mivems resolve thep rimises, promise.all, reusalbirty of movielist 
+- memoiztion (if i am on gpt page then oges to homepage, why to make api clal agian and agian if data in resux sotre is laready there ), in useffect , of useNowplayign move, if no nowplayign then make apo clalas

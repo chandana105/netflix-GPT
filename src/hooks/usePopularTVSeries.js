@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
-import { addPopularSeries } from "../utils/seriesSlice";
+import { addPopularSeries } from "../store/seriesSlice";
 import { useEffect } from "react";
 
 const usePopularTVSeries = () => {

@@ -1,29 +1,14 @@
 import React from "react";
 import { TiArrowSortedUp } from "react-icons/ti";
-import { signOut } from "firebase/auth";
-import { getAuth } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { SIGN_OUT_BUTTON_TEXT } from "../utils/constants";
+import { SIGN_OUT_BUTTON_TEXT } from "../../utils/constants";
+import useHeader from "../../hooks/useHeader";
 
 const Dropdown = ({ onMouseLeaveContainer }) => {
-  const auth = getAuth();
-  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
 
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful. (naivgate done from central level ie header)
-      })
-      .catch((error) => {
-        // An error happened.
-        console.log(error);
-        navigate("/error");
-        // TODO: SHOW A TOAST
-        //TODO: TO BUILD COOL ERROR PAGE
-      });
-  };
+  const { handleSignOut } = useHeader();
+
   return (
     <div
       className=" flex flex-col justify-center items-end z-10 absolute top-16  right-[2.2rem] "

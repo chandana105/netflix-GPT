@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
-import { addTopRatedSeries } from "../utils/seriesSlice";
+import { addTopRatedSeries } from "../store/seriesSlice";
 import { useEffect } from "react";
 
 const useTopRatedTVSeries = () => {

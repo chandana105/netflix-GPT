@@ -39,5 +39,3 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "pb", name: "Punjabi" },
   { identifier: "ko", name: "Korean" },
 ];
-
-// Every text should come from cosntants file

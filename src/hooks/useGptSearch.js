@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { API_OPTIONS } from "../utils/constants";
 import openai from "../utils/openai";
-import { addGptMoviesResults } from "../utils/gptSlice";
+import { addGptMoviesResults } from "../store/gptSlice";
 
 const useGptSearch = (searchTextRef) => {
   const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const searchMovieTMDB = async (movie) => {
     const data = await fetch(
@@ -23,36 +25,42 @@ const useGptSearch = (searchTextRef) => {
     // Make an API call to GPT API and get movie Results
     const gptQuery = `Act as a Movie Recommendation system and suggest some movies for the query : ${message} and only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Fannah,Fighter,Pathaan,Jawaan,War`;
 
-    const gptSearchResults = await openai.chat.completions.create({
-      messages: [{ role: "user", content: gptQuery }],
-      model: "gpt-3.5-turbo",
-    });
+    try {
+      const gptSearchResults = await openai.chat.completions.create({
+        messages: [{ role: "user", content: gptQuery }],
+        model: "gpt-3.5-turbo",
+      });
 
-    if (!gptSearchResults.choices) {
-      //TODO: error handling pg (show it below the aearch bar that gpt search failed)
+      if (!gptSearchResults.choices) {
+        setErrorMessage("GPT search failed. Please try again.");
+        return;
+      }
+
+      const gptMovies = gptSearchResults.choices[0].message.content.split(",");
+
+      // for each of these movies ll try to find out the search in tmdb movie api
+      const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
+      // we ll get [Promise1, promise 2 ....]
+
+      // resolving array of Promises
+      const tmdbResults = await Promise.all(promiseArray);
+
+      // Pushing movies names and movieresults to store
+      dispatch(
+        addGptMoviesResults({
+          movieNames: gptMovies,
+          movieResults: tmdbResults,
+        })
+      );
+
+      setErrorMessage(""); // clear error message if successful
+    } catch (error) {
+      setErrorMessage("An error occurred while searching. Please try again.");
+      console.error("API call failed:", error);
     }
-
-    const gptMovies = gptSearchResults.choices[0].message.content.split(",");
-
-    // for each of these movies ll try to find out the search in tmdb movie api
-    // FOR EACH MOVIE I WAILL SEARCH TMDB API
-
-    const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
-    // it ll provide all the array of promies
-    // [Promise1, promise 2 ....]
-
-    // to resolve all the prpmises and get one result of array
-
-    const tmdbResults = await Promise.all(promiseArray);
-
-    // once we get these movies, we should push them in the store and then use in moivesuggestions comp
-
-    dispatch(
-      addGptMoviesResults({ movieNames: gptMovies, movieResults: tmdbResults })
-    );
   };
 
-  return handleGptSearchClick;
+  return { handleGptSearchClick, errorMessage };
 };
 
 export default useGptSearch;

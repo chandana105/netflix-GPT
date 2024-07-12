@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
-import { addOnTheAirSeries } from "../utils/seriesSlice";
+import { addOnTheAirSeries } from "../store/seriesSlice";
 import { useEffect } from "react";
 
 const useOnTheAirTVSeries = () => {

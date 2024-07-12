@@ -1,4 +1,3 @@
-// For each language :-, to see what that sentence looks
 export const lang = {
   en: {
     search: "Search",
