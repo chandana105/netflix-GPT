@@ -9,9 +9,12 @@ const configSlice = createSlice({
     changeLanguage: (state, action) => {
       state.defaultLanguage = action.payload;
     },
+    resetLanguage: (state) => {
+      state.defaultLanguage = "en";
+    },
   },
 });
 
-export const { changeLanguage } = configSlice.actions;
+export const { changeLanguage, resetLanguage } = configSlice.actions;
 
 export default configSlice.reducer;

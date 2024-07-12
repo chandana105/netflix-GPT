@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addUser, removeUser } from "../store/userSlice";
 import { clearGptMovieResults, toggleGptSearchView } from "../store/gptSlice";
-import { changeLanguage } from "../store/configSlice";
+import { changeLanguage, resetLanguage } from "../store/configSlice";
 
 const useHeader = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -58,6 +58,7 @@ const useHeader = () => {
   const handleToggleGptSearchView = () => {
     dispatch(toggleGptSearchView());
     dispatch(clearGptMovieResults());
+    dispatch(resetLanguage());
   };
 
   const handleLanguageChange = (e) => {
