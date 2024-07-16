@@ -2,7 +2,7 @@
 
 NETFLIX GPT is an advanced movie recommendation platform integrating OpenAI's GPT APIs for personalized movie suggestions, powered by TMDB API. Built with Reactjs, Redux Toolkit, Firebase for authentication, and TailwindCSS for a modern and responsive user experience.
 
-- Live demo: [NetflixGPT](https://netflixgpt.netlify.app/)
+- Live demo: [NetflixGPT](https://streaminggpt.netlify.app/)
 
 # Tech Stack
 
