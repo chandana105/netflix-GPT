@@ -65,11 +65,11 @@ NETFLIX GPT is an advanced movie recommendation platform integrating OpenAI's GP
 
 # Screenshots
 
-<img width="490" alt="Screenshot 2024-07-12 at 11 59 07 PM" src="https://github.com/user-attachments/assets/b42e713a-3ddb-4adf-a50b-49a758c7d020"> &nbsp; &nbsp;
-<img width="490" alt="Screenshot 2024-07-13 at 12 11 39 AM" src="https://github.com/user-attachments/assets/cc283180-0935-4b5b-b905-e8ef344135cd"> &nbsp; &nbsp;
-<img width="490" alt="Screenshot 2024-07-13 at 12 13 26 AM" src="https://github.com/user-attachments/assets/088db9d2-7beb-4e55-97d9-8043a4c4608c"> &nbsp; &nbsp;
-<img width="490" alt="Screenshot 2024-07-12 at 11 59 30 PM" src="https://github.com/user-attachments/assets/07a6adff-917d-464d-8b9a-6e299bdf7c07"> &nbsp; &nbsp;
-<img width="490" alt="Screenshot 2024-07-13 at 12 36 21 AM" src="https://github.com/user-attachments/assets/27a9454b-e66b-4873-9a2f-275c1ce5c689"> &nbsp; &nbsp;
+<img width="490" alt="Screenshot 2024-07-12 at 11 59 07 PM" src="https://github.com/user-attachments/assets/b42e713a-3ddb-4adf-a50b-49a758c7d020"> &nbsp; 
+<img width="490" alt="Screenshot 2024-07-13 at 12 11 39 AM" src="https://github.com/user-attachments/assets/cc283180-0935-4b5b-b905-e8ef344135cd"> &nbsp; 
+<img width="490" alt="Screenshot 2024-07-13 at 12 13 26 AM" src="https://github.com/user-attachments/assets/088db9d2-7beb-4e55-97d9-8043a4c4608c"> &nbsp; 
+<img width="490" alt="Screenshot 2024-07-12 at 11 59 30 PM" src="https://github.com/user-attachments/assets/07a6adff-917d-464d-8b9a-6e299bdf7c07"> &nbsp; 
+<img width="490" alt="Screenshot 2024-07-13 at 12 36 21 AM" src="https://github.com/user-attachments/assets/27a9454b-e66b-4873-9a2f-275c1ce5c689"> &nbsp; 
 
 
 
