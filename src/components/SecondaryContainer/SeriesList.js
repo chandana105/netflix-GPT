@@ -2,6 +2,7 @@ import React from "react";
 import SeriesCard from "./SeriesCard";
 
 const SeriesList = ({ series, title }) => {
+  if (!series?.length) return null;
   return (
     <div className="p-8 pt-4">
       <h1 className="text-lg md:text-2xl py-4">{title}</h1>
