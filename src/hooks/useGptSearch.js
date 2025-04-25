@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { API_OPTIONS } from "../utils/constants";
-import openai from "../utils/openai";
+import { API_OPTIONS, NETFLIX_GPT_API_URL } from "../utils/constants";
 import { addGptMoviesResults } from "../store/gptSlice";
 
 const useGptSearch = (searchTextRef) => {
@@ -26,10 +25,18 @@ const useGptSearch = (searchTextRef) => {
     const gptQuery = `Act as a Movie Recommendation system and suggest some movies for the query : ${message} and only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Fannah,Fighter,Pathaan,Jawaan,War`;
 
     try {
-      const gptSearchResults = await openai.chat.completions.create({
-        messages: [{ role: "user", content: gptQuery }],
-        model: "gpt-3.5-turbo",
+      const response = await fetch(NETFLIX_GPT_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: [{ role: "user", content: gptQuery }],
+          model: "gpt-3.5-turbo",
+        }),
       });
+
+      const gptSearchResults = await response.json();
 
       if (!gptSearchResults.choices) {
         setErrorMessage("GPT search failed. Please try again.");

@@ -15,6 +15,9 @@ export const API_OPTIONS = {
   },
 };
 
+export const NETFLIX_GPT_API_URL =
+  "https://netflix-gpt-api-server.vercel.app/api/openai";
+
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500/";
 
 export const SIGN_OUT_BUTTON_TEXT = "Sign out of Netflix";

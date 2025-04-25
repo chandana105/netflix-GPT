@@ -18,6 +18,8 @@ const Login = () => {
     emailRef,
     passwordRef,
     errorMessage,
+    copied,
+    handleCopy,
     handleButtonClick,
     toggleSignInForm,
   } = useAuth();
@@ -82,6 +84,36 @@ const Login = () => {
             {isSignInForm ? SIGN_UP_NOW : SIGN_IN_NOW}
           </span>
         </p>
+        {isSignInForm && (
+          <span className="text-white text-center text-xs md:text-sm">
+            <p className="font-bold">For testing purpose use</p>
+            <div>
+              email:{" "}
+              <button
+                onClick={() => handleCopy("chandana@gmail.com")}
+                className="cursor-pointer text-blue-300 underline"
+                title="Click to copy email"
+                type="button"
+              >
+                chandana@gmail.com
+              </button>{" "}
+              , password:{" "}
+              <button
+                onClick={() => handleCopy("Qwerty1@")}
+                className="cursor-pointer text-blue-300 underline"
+                title="Click to copy password"
+                type="button"
+              >
+                Qwerty1@
+              </button>
+            </div>
+            {copied && (
+              <p className="text-green-400 mt-1">
+                Copied: <span className="italic">{copied}</span>
+              </p>
+            )}
+          </span>
+        )}
       </form>
     </div>
   );

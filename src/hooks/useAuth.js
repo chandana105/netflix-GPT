@@ -17,6 +17,7 @@ const useAuth = () => {
   const dispatch = useDispatch();
 
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [copied, setCopied] = useState("");
 
   const fullNameRef = useRef(null);
   const emailRef = useRef(null);
@@ -26,6 +27,21 @@ const useAuth = () => {
 
   const toggleSignInForm = () => {
     setIsSignInForm((prev) => !prev);
+  };
+
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(text);
+      setTimeout(() => setCopied(""), 1500);
+      console.log("Text copied to clipboard");
+    } catch (err) {
+      console.error("Failed to copy text to clipboard", err);
+    }
+  };
+
+  const handleCopy = (text) => {
+    copyToClipboard(text);
   };
 
   const handleButtonClick = () => {
@@ -110,6 +126,8 @@ const useAuth = () => {
     emailRef,
     passwordRef,
     errorMessage,
+    copied,
+    handleCopy,
     handleButtonClick,
     toggleSignInForm,
   };
